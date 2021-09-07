@@ -10,7 +10,6 @@ export class UsersService {
     @InjectRepository(User)
     private userRepository:Repository<User> 
   )
-    //TODO : AÑADIR EL GUARD DE JWT CUANDO ESTE LISTO. (excepto al de crear claro :D )
   create(createUserDto: CreateUserDto) {
     const user = this.userRepository.create(createUserDto);
     delete user.password;
@@ -26,7 +25,7 @@ export class UsersService {
     return this.userRepository.find({where:{email:email}});
   }
   findByUsername(username:string){
-    return this.userRepository.find(where:{username:username});
+    return this.userRepository.find({where:{username:username}});
   }
   update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;

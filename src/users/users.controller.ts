@@ -6,13 +6,13 @@ import { UpdateUserDto } from './dto/update-user.dto';
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-
+    //TODO : AÑADIR EL GUARD DE JWT CUANDO ESTE LISTO. (excepto al de crear claro :D )
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
 
-  @Get()
+  @Get('/all')
   findAll() {
     return this.usersService.findAll();
   }

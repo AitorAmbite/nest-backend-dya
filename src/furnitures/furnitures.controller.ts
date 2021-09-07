@@ -12,7 +12,7 @@ export class FurnituresController {
     return this.furnituresService.create(createFurnitureDto);
   }
 
-  @Get()
+  @Get('/all')
   findAll() {
     return this.furnituresService.findAll();
   }

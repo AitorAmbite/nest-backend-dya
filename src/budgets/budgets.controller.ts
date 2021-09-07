@@ -12,7 +12,7 @@ export class BudgetsController {
     return this.budgetsService.create(createBudgetDto);
   }
 
-  @Get()
+  @Get('/all')
   findAll() {
     return this.budgetsService.findAll();
   }
