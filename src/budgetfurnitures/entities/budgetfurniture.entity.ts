@@ -1,7 +1,11 @@
+import { Budget } from 'src/budgets/entities/budget.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Budget } from '../../budgets/entities/Budget.entity';
+
+@Entity()
 export class Budgetfurniture {
   //TODO: AÑADIR LOS CAMPOS ETC.
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @ManyToOne(() => Budget, (budget) => budget.furniture)
   budget: Budget;

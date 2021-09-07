@@ -1,1 +1,6 @@
-export class Furniture {}
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+@Entity()
+export class Furniture {
+  @PrimaryGeneratedColumn()
+  id: number;
+}

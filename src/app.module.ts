@@ -6,6 +6,7 @@ import { BudgetsModule } from './budgets/budgets.module';
 import { BudgetfurnituresModule } from './budgetfurnitures/budgetfurnitures.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Connection } from 'typeorm';
 
 @Module({
   imports: [
@@ -18,4 +19,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private connection: Connection) {}
+}

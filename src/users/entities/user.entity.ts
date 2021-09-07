@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number;
   @Column({ unique: true })
   username: string;
@@ -12,11 +12,19 @@ export class User {
   password: string;
 
   @BeforeInsert()
-  async hashPass() {
-    this.password = await bcrypt.hash(this.password, 10);
+  async hashPass(): Promise<void> {
+    const salt = await bcrypt.genSalt();
+    this.password = await bcrypt.hash(this.password, salt);
+    console.log(this.password);
   }
 
   async validatePass(password: string) {
     return bcrypt.compare(password, this.password);
+  }
+
+  constructor(userId: number, username: string, password: string) {
+    this.id = userId;
+    this.username = username;
+    this.password = password;
   }
 }

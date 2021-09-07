@@ -1,5 +1,7 @@
+import { Budgetfurniture } from 'src/budgetfurnitures/entities/budgetfurniture.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Budgetfurniture } from '../../budgetfurnitures/entities/budgetfurniture.entity';
+
+@Entity()
 export class Budget {
   //AÑADIR LOS CAMPOS
   @PrimaryGeneratedColumn()
@@ -12,7 +14,7 @@ export class Budget {
   @Column({ nullable: false })
   price: number;
 
-  @Column({ length: 9 })
+  @Column()
   phone: number;
 
   @OneToMany(() => Budgetfurniture, (budgetfurniture) => budgetfurniture.budget)
