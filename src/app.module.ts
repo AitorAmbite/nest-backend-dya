@@ -7,7 +7,13 @@ import { BudgetfurnituresModule } from './budgetfurnitures/budgetfurnitures.modu
 import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [FurnituresModule, BudgetsModule, BudgetfurnituresModule, UsersModule],
+  imports: [
+    FurnituresModule, 
+    BudgetsModule, 
+    BudgetfurnituresModule, 
+    UsersModule,
+    TypeOrmModule.forRoot(),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
