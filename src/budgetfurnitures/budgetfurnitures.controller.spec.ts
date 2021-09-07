@@ -11,7 +11,9 @@ describe('BudgetfurnituresController', () => {
       providers: [BudgetfurnituresService],
     }).compile();
 
-    controller = module.get<BudgetfurnituresController>(BudgetfurnituresController);
+    controller = module.get<BudgetfurnituresController>(
+      BudgetfurnituresController,
+    );
   });
 
   it('should be defined', () => {

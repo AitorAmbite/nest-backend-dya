@@ -5,12 +5,13 @@ import { FurnituresModule } from './furnitures/furnitures.module';
 import { BudgetsModule } from './budgets/budgets.module';
 import { BudgetfurnituresModule } from './budgetfurnitures/budgetfurnitures.module';
 import { UsersModule } from './users/users.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    FurnituresModule, 
-    BudgetsModule, 
-    BudgetfurnituresModule, 
+    FurnituresModule,
+    BudgetsModule,
+    BudgetfurnituresModule,
     UsersModule,
     TypeOrmModule.forRoot(),
   ],

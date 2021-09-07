@@ -1,11 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { BudgetfurnituresService } from './budgetfurnitures.service';
 import { CreateBudgetfurnitureDto } from './dto/create-budgetfurniture.dto';
 import { UpdateBudgetfurnitureDto } from './dto/update-budgetfurniture.dto';
 
 @Controller('budgetfurnitures')
 export class BudgetfurnituresController {
-  constructor(private readonly budgetfurnituresService: BudgetfurnituresService) {}
+  constructor(
+    private readonly budgetfurnituresService: BudgetfurnituresService,
+  ) {}
 
   @Post()
   create(@Body() createBudgetfurnitureDto: CreateBudgetfurnitureDto) {
@@ -23,7 +33,10 @@ export class BudgetfurnituresController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBudgetfurnitureDto: UpdateBudgetfurnitureDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateBudgetfurnitureDto: UpdateBudgetfurnitureDto,
+  ) {
     return this.budgetfurnituresService.update(+id, updateBudgetfurnitureDto);
   }
 
