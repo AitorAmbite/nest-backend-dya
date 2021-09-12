@@ -20,7 +20,7 @@ export class UsersService {
     return this.userRepository.find();
   }
   findOne(id: number) {
-    return this.userRepository.find({ where: { id: id } });
+    return this.userRepository.findOne(id);
   }
   findByMail(email: string) {
     return this.userRepository.find({ where: { email: email } });
@@ -29,10 +29,14 @@ export class UsersService {
     return this.userRepository.find({ where: { username: username } });
   }
   update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+    const userToUpdate = this.userRepository.create(updateUserDto);
+    this.userRepository.save(userToUpdate);
+    return `usuario con id:${id} actualizado`;
   }
-
   remove(id: number) {
     return this.userRepository.delete(id);
+  }
+  login() {
+    return `test`;
   }
 }

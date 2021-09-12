@@ -15,7 +15,6 @@ export class User {
   async hashPass(): Promise<void> {
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(this.password, salt);
-    console.log(this.password);
   }
 
   async validatePass(password: string) {
