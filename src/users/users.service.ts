@@ -10,7 +10,7 @@ export class UsersService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
   ) {}
-  async create(createUserDto: CreateUserDto) {
+  create(createUserDto: CreateUserDto) {
     const user = this.userRepository.create(createUserDto);
     await this.userRepository.save(user);
     delete user.password;

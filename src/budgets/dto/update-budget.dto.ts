@@ -12,6 +12,10 @@ export class UpdateBudgetDto extends PartialType(CreateBudgetDto) {
   @IsNotEmpty()
   price: number;
   @IsOptional()
+  carriage:number;
+  @IsOptional()
+  extras:number;
+  @IsOptional()
   @Length(9, 9)
   phone: number;
 }

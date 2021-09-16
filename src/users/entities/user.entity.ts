@@ -11,12 +11,14 @@ export class User {
   @Column()
   password: string;
 
+  //actions before insertions 
   @BeforeInsert()
   async hashPass(): Promise<void> {
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(this.password, salt);
   }
 
+  //actions of the entity
   async validatePass(password: string) {
     return bcrypt.compare(password, this.password);
   }

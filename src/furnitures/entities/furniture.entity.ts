@@ -13,6 +13,8 @@ export class Furniture {
   back: number;
   @Column()
   drawer: number;
+  @Column()
+  fillingdrawer:number;
   @Column({ type: 'double' })
   price: number;
   @Column()
