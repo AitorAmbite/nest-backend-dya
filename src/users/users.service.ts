@@ -10,7 +10,7 @@ export class UsersService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
   ) {}
-  create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto) {
     const user = this.userRepository.create(createUserDto);
     await this.userRepository.save(user);
     delete user.password;
@@ -35,8 +35,5 @@ export class UsersService {
   }
   remove(id: number) {
     return this.userRepository.delete(id);
-  }
-  login() {
-    return `test`;
   }
 }

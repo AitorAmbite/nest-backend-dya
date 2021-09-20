@@ -39,9 +39,4 @@ export class UsersController {
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }
-  // TODO: cambiar por el login real
-  @Post('/login')
-  login(@Body() login: { email: string; password: string }) {
-    return login;
-  }
 }

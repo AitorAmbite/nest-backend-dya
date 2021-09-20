@@ -8,18 +8,24 @@ export class Budget {
   id: number;
   @Column({ unique: true, nullable: false })
   bl_id: string;
+  @Column()
+  name: string;
   @Column({ nullable: false })
   address: string;
   @Column({ nullable: false })
   price: number;
   @Column()
-  carriage:number;
+  carriage: number;
   @Column()
-  extras:number;
+  extras: number;
   @Column()
   phone: number;
 
   //relationships
-  @OneToMany(() => Budgetfurniture, (budgetfurniture) => budgetfurniture.budget)
-  furniture: Budgetfurniture[];
+  @OneToMany(
+    () => Budgetfurniture,
+    (budgetfurniture) => budgetfurniture.budget,
+    { cascade: true },
+  )
+  furniture?: Budgetfurniture[];
 }

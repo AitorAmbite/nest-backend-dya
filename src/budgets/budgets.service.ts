@@ -1,5 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CreateBudgetfurnitureDto } from 'src/budgetfurnitures/dto/create-budgetfurniture.dto';
+import { Budgetfurniture } from 'src/budgetfurnitures/entities/budgetfurniture.entity';
 import { Repository } from 'typeorm';
 import { CreateBudgetDto } from './dto/create-budget.dto';
 import { UpdateBudgetDto } from './dto/update-budget.dto';
@@ -12,8 +14,16 @@ export class BudgetsService {
     private budgetRepository: Repository<Budget>,
   ) {}
 
-  create(createBudgetDto: CreateBudgetDto) {
-    return this.budgetRepository.create(createBudgetDto);
+  async create(createBudgetDto: CreateBudgetDto) {
+    try {
+      const budget = this.budgetRepository.create(createBudgetDto);
+      return await this.budgetRepository.save(budget);
+    } catch (error) {
+      throw new HttpException(
+        "Couldn't create" + error,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
   findAll() {
