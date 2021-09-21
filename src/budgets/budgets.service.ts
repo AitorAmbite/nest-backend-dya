@@ -27,11 +27,11 @@ export class BudgetsService {
   }
 
   findAll() {
-    return this.budgetRepository.find();
+    return this.budgetRepository.find({ relations: ['furniture'] });
   }
 
   findOne(id: number) {
-    return this.budgetRepository.find({ where: { id: id } });
+    return this.budgetRepository.findOne(id);
   }
 
   update(id: number, updateBudgetDto: UpdateBudgetDto) {

@@ -1,5 +1,11 @@
 import { Budgetfurniture } from 'src/budgetfurnitures/entities/budgetfurniture.entity';
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  JoinTable,
+} from 'typeorm';
 
 @Entity()
 export class Budget {
@@ -27,5 +33,6 @@ export class Budget {
     (budgetfurniture) => budgetfurniture.budget,
     { cascade: true },
   )
+  @JoinTable()
   furniture?: Budgetfurniture[];
 }
