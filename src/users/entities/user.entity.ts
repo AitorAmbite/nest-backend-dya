@@ -4,28 +4,20 @@ import * as bcrypt from 'bcrypt';
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
-  @Column({ unique: true })
+  @Column({ unique: true, name: 'username' })
   username: string;
-  @Column({ unique: true })
+  @Column({ unique: true, name: 'email' })
   email: string;
   @Column()
   password: string;
 
-  //actions before insertions 
+  //actions before insertions
   @BeforeInsert()
   async hashPass(): Promise<void> {
-    const salt = await bcrypt.genSalt();
-    this.password = await bcrypt.hash(this.password, salt);
+    this.password = await bcrypt.hash(this.password, 10);
   }
 
-  //actions of the entity
-  async validatePass(password: string) {
-    return bcrypt.compare(password, this.password);
-  }
-
-  constructor(userId: number, username: string, password: string) {
-    this.id = userId;
-    this.username = username;
-    this.password = password;
+  async validatePassword(password: string) {
+    return await bcrypt.compare(password, this.password);
   }
 }
