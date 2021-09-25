@@ -6,12 +6,15 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { FurnituresService } from './furnitures.service';
 import { CreateFurnitureDto } from './dto/create-furniture.dto';
 import { UpdateFurnitureDto } from './dto/update-furniture.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('furnitures')
+@UseGuards(JwtAuthGuard)
 export class FurnituresController {
   constructor(private readonly furnituresService: FurnituresService) {}
 

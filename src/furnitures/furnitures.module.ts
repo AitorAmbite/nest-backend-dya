@@ -12,10 +12,10 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
   controllers: [FurnituresController],
   providers: [
     FurnituresService,
-    {
-      provide: APP_GUARD,
-      useClass: JwtAuthGuard,
-    },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: JwtAuthGuard,
+    // },
   ],
 })
 export class FurnituresModule {}

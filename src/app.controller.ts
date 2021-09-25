@@ -21,8 +21,13 @@ export class AppController {
     return this.authService.login(req.user);
   }
   @UseGuards(JwtAuthGuard)
-  @Post('profile')
+  @Post('auth/me')
   async profile(@Request() req) {
     return req.user;
+  }
+  @UseGuards(JwtAuthGuard)
+  @Post('auth/token-check')
+  async checkToken() {
+    return '';
   }
 }

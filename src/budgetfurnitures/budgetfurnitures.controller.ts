@@ -6,12 +6,15 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { BudgetfurnituresService } from './budgetfurnitures.service';
 import { CreateBudgetfurnitureDto } from './dto/create-budgetfurniture.dto';
 import { UpdateBudgetfurnitureDto } from './dto/update-budgetfurniture.dto';
 
 @Controller('budgetfurnitures')
+@UseGuards(JwtAuthGuard)
 export class BudgetfurnituresController {
   constructor(
     private readonly budgetfurnituresService: BudgetfurnituresService,
