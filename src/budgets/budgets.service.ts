@@ -16,6 +16,7 @@ export class BudgetsService {
 
   async create(createBudgetDto: CreateBudgetDto) {
     try {
+      createBudgetDto.price = this.getFinalPrice(createBudgetDto.furniture);
       const budget = this.budgetRepository.create(createBudgetDto);
       return await this.budgetRepository.save(budget);
     } catch (error) {
@@ -40,5 +41,13 @@ export class BudgetsService {
 
   remove(id: number) {
     return this.budgetRepository.delete(id);
+  }
+
+  private getFinalPrice(budgetFurniture:CreateBudgetfurnitureDto[]){
+    var totalPrice = 0;
+    Budgetfurniture.forEach(furniture => {
+      totalPrice += furniture.price;
+    });
+    return totalPrice;
   }
 }
