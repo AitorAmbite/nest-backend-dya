@@ -17,7 +17,6 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 @UseGuards(JwtAuthGuard)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-  //TODO : AÑADIR EL GUARD DE JWT CUANDO ESTE LISTO. (excepto al de crear claro :D )
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);

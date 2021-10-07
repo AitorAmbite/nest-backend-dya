@@ -8,6 +8,10 @@ export class User {
   username: string;
   @Column({ unique: true, name: 'email' })
   email: string;
+  // TODO:: AÑADIR ESTO CON AUTORIZACION
+  // RECUERDA QUE TIENES QUE CAMBIARLO EN LOS DTOS TAMBIEN.
+  // @Column({enum:["admin","worker"]})
+  // role:string;
   @Column()
   password: string;
 
