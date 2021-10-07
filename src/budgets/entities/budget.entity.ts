@@ -25,6 +25,8 @@ export class Budget {
   @Column()
   extras: number;
   @Column()
+  unero:number;
+  @Column()
   phone: number;
 
   //relationships

@@ -36,7 +36,11 @@ export class BudgetsService {
   }
 
   update(id: number, updateBudgetDto: UpdateBudgetDto) {
-    return `This action updates a #${id} budget`;
+    const budgetUpdate = this.budgetRepository.update(id,updateBudgetDto)
+    if(budgetUpdate.affected){
+      return '';
+    }
+    throw new HttpException("couldn't find", HttpStatus.NOT_FOUND);
   }
 
   remove(id: number) {
