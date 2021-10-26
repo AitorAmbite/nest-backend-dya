@@ -14,8 +14,8 @@ export class Furniture {
   @Column()
   drawer: number;
   @Column()
-  fillingdrawer:number;
-  @Column({ type: 'double' })
+  fillingdrawer: number;
+  @Column({ type: 'decimal' })
   price: number;
   @Column()
   type: string;

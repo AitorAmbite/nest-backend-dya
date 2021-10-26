@@ -18,7 +18,7 @@ export class Budgetfurniture {
   drawer: number;
   @Column()
   fillingdrawer: number;
-  @Column({ type: 'double' })
+  @Column({ type: 'numeric' })
   price: number;
   @Column()
   type: string;
