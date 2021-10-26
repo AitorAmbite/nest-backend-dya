@@ -7,6 +7,9 @@
     "database": "dvvstju4kuvt2",
     "entities": ["dist/**/*.entity{.ts,.js}"],
     "synchronize": true,
-    "autoLoadEntities": true
+    "autoLoadEntities": true,
+    "extra": {
+      "ssl": true
+ }
   }
   
