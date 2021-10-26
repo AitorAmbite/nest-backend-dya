@@ -32,7 +32,10 @@ export class FurnituresService {
     if (furniture) {
       return furniture;
     }
-    throw new HttpException("couldn't find furniture with id `${id}`", HttpStatus.NOT_FOUND);
+    throw new HttpException(
+      "couldn't find furniture with id `${id}`",
+      HttpStatus.NOT_FOUND,
+    );
   }
 
   async update(id: number, updateFurnitureDto: UpdateFurnitureDto) {
