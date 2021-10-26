@@ -35,8 +35,8 @@ export class BudgetsService {
     return this.budgetRepository.findOne(id);
   }
 
-  update(id: number, updateBudgetDto: UpdateBudgetDto) {
-    const budgetUpdate = this.budgetRepository.update(id,updateBudgetDto)
+  async update(id: number, updateBudgetDto: UpdateBudgetDto) {
+    const budgetUpdate = await this.budgetRepository.update(id,updateBudgetDto)
     if(budgetUpdate.affected){
       return '';
     }
