@@ -48,10 +48,10 @@ export class BudgetsService {
   }
 
   private getFinalPrice(budgetFurniture:CreateBudgetfurnitureDto[]){
-    var totalPrice = 0;
-    Budgetfurniture.forEach(furniture => {
-      totalPrice += furniture.price;
-    });
-    return totalPrice;
+    // var totalPrice = 0;
+    // Budgetfurniture.forEach(furniture => {
+    //   totalPrice += furniture.price;
+    // });
+    return budgetFurniture.reduce((acc,cur) => acc+cur.price,0);
   }
 }
