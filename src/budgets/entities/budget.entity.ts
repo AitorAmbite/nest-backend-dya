@@ -18,7 +18,7 @@ export class Budget {
   name: string;
   @Column({ nullable: false })
   address: string;
-  @Column({ nullable: false })
+  @Column({ nullable: false, type:"float8" })
   price: number;
   @Column()
   carriage: number;

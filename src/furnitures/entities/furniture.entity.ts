@@ -15,7 +15,7 @@ export class Furniture {
   drawer: number;
   @Column()
   fillingdrawer: number;
-  @Column({ type: 'decimal' })
+  @Column({ type: 'float8' })
   price: number;
   @Column()
   type: string;
