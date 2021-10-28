@@ -4,9 +4,6 @@ import { CreateFurnitureDto } from './create-furniture.dto';
 
 export class UpdateFurnitureDto extends PartialType(CreateFurnitureDto) {
   @IsNotEmpty()
-  @IsInt()
-  id: number;
-  @IsNotEmpty()
   name: string;
   @IsNotEmpty()
   high: number;
