@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { paginationT } from '../types/paginationTypes';
 import { CreateFurnitureDto } from './dto/create-furniture.dto';
 import { UpdateFurnitureDto } from './dto/update-furniture.dto';
 import { Furniture } from './entities/furniture.entity';
@@ -18,7 +19,10 @@ export class FurnituresService {
     }
     throw new HttpException("couldn't create", HttpStatus.INTERNAL_SERVER_ERROR);
   }
-
+  async findPaginated (pagination:paginationT) {
+    const skip = pagination.page*pagination.pageSize;
+    return this.furnitureRepository.find({skip:this.skip,take:pagination.pageSize})
+  }
   async findAll() {
     const furniture = await this.furnitureRepository.find();
     if (furniture.length > 0) {
