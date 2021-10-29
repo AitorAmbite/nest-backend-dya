@@ -40,9 +40,13 @@ export class FurnituresService {
     return this.furnitureRepository.find({skip:this.skip,take:pagination.pageSize})
   }
 
-  async findByType (pagination:PaginationDTO){
+  async findByTypePaginated (pagination:PaginationTypeDTO){
     const skip = pagination.page*pagination.pageSize;
-    return await this.furnitureRepository.find({skip:this.skip,take:pagination.pageSize,where:{type:'a añadir'}})
+    return await this.furnitureRepository.find({
+      skip:this.skip,
+      take:pagination.pageSize,
+      where:{type:pagination.type}
+    })
   }
 
   async update(id: number, updateFurnitureDto: UpdateFurnitureDto) {

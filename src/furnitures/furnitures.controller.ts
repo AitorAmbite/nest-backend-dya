@@ -12,7 +12,7 @@ import { FurnituresService } from './furnitures.service';
 import { CreateFurnitureDto } from './dto/create-furniture.dto';
 import { UpdateFurnitureDto } from './dto/update-furniture.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { PaginationDTO } from '../types/PaginationTypes';
+import { PaginationDTO,PaginationTypeDTO } from '../types/PaginationTypes';
 
 @Controller('furnitures')
 @UseGuards(JwtAuthGuard)
@@ -35,11 +35,11 @@ export class FurnituresController {
   }
   
   @Post('/paginated')
-  findPaginated(@Body() pagination:PaginationDTO){
+  findPaginated(@Body() pagination:PaginationTypeDTO){
     return this.furnituresService.findPaginated(pagination)
   }
 
-  findByType(@Body pagination:PaginationDTO){
+  findByTypePaginated(@Body pagination:PaginationDTO){
     return this.furnituresService.findByType(pagination)
   }
 
