@@ -35,21 +35,11 @@ export class FurnituresService {
     throw new HttpException("couldn't find furniture with id `${id}`", HttpStatus.NOT_FOUND);
   }
 
-  async findPaginated (page:number,pageSize:number) {
+  async findPaginated (page:number,pageSize:number, type?:string) {
     const {f,count} = await this.furnitureRepository.findAndCount();
-    const data = await this.furnitureRepository.find({skip:page*pageSize,take:pageSize})
+    const data = await this.furnitureRepository.find({skip:page*pageSize,take:pageSize, where:{type:this.type}})
     return {furniture:data,totalRecords:count}
   }
-
-  async findByTypePaginated (pagination:PaginationTypeDTO){
-    const skip = pagination.page*pagination.pageSize;
-    return await this.furnitureRepository.find({
-      skip:this.skip,
-      take:pagination.pageSize,
-      where:{type:pagination.type}
-    })
-  }
-
   async update(id: number, updateFurnitureDto: UpdateFurnitureDto) {
     const furniture = await this.furnitureRepository.update(
       id,

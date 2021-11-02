@@ -35,15 +35,11 @@ export class FurnituresController {
     return this.furnituresService.findOne(+id);
   }
   
-  @Get('/paginated/:page/:pageSize/')
-  findPaginated(@Param('page') page:number,@Param('pageSize') pageSize:number){
+  @Get('/paginated/:page/:pageSize/:type')
+  findPaginated(@Param('page') page:number,@Param('pageSize') pageSize:number, @Param('type') type?:string){
     const {totalRecords, data} = this.furnituresService.findPaginated
     const response = new PaginatedResponse<Furniture>(totalRecords,page,data)
     return response
-  }
-
-  findByTypePaginated(@Body pagination:PaginationDTO){
-    return this.furnituresService.findByType(pagination)
   }
 
   @Patch(':id')
