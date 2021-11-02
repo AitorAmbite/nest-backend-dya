@@ -12,7 +12,8 @@ import { FurnituresService } from './furnitures.service';
 import { CreateFurnitureDto } from './dto/create-furniture.dto';
 import { UpdateFurnitureDto } from './dto/update-furniture.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { PaginationDTO,PaginationTypeDTO } from '../types/PaginationTypes';
+import { Furniture } from './entities/furniture.entity'
+import { PaginationDTO,PaginationTypeDTO,PaginatedResponse } from '../types/PaginationTypes';
 
 @Controller('furnitures')
 @UseGuards(JwtAuthGuard)
@@ -34,9 +35,11 @@ export class FurnituresController {
     return this.furnituresService.findOne(+id);
   }
   
-  @Post('/paginated')
-  findPaginated(@Body() pagination:PaginationTypeDTO){
-    return this.furnituresService.findPaginated(pagination)
+  @Get('/paginated/:page/:pageSize/')
+  findPaginated(@Param('page') page:number,@Param('pageSize') pageSize:number){
+    const {totalRecords, data} = this.furnituresService.findPaginated
+    const response = new PaginatedResponse<Furniture>(totalRecords,page,data)
+    return response
   }
 
   findByTypePaginated(@Body pagination:PaginationDTO){

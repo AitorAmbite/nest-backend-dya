@@ -35,9 +35,10 @@ export class FurnituresService {
     throw new HttpException("couldn't find furniture with id `${id}`", HttpStatus.NOT_FOUND);
   }
 
-  async findPaginated (pagination:PaginationDTO) {
-    const skip = pagination.page*pagination.pageSize;
-    return this.furnitureRepository.find({skip:this.skip,take:pagination.pageSize})
+  async findPaginated (page:number,pageSize:number) {
+    const {f,count} = await this.furnitureRepository.findAndCount();
+    const data = await this.furnitureRepository.find({skip:page*pageSize,take:pageSize})
+    return {furniture:data,totalRecords:count}
   }
 
   async findByTypePaginated (pagination:PaginationTypeDTO){
