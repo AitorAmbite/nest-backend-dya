@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 import { CreateBudgetDto } from './dto/create-budget.dto';
 import { UpdateBudgetDto } from './dto/update-budget.dto';
 import { Budget } from './entities/budget.entity';
-import { paginationT } from '../types/PaginationTypes';
+// import { paginationT } from '../types/PaginationTypes';
 // TEMPORAL TYPE
 @Injectable()
 export class BudgetsService {
@@ -34,10 +34,10 @@ export class BudgetsService {
   findOne(id: number) {
     return this.budgetRepository.findOne(id);
   }
-  async findPaginated(pagination:paginationT) {
-    const skip = pagination.page*pagination.pageSize;
-    return await this.budgetRepository.find({skip:skip,take:pagination.pageSize})
-  }
+  // async findPaginated(pagination:paginationT) {
+  //   const skip = pagination.page*pagination.pageSize;
+  //   return await this.budgetRepository.find({skip:skip,take:pagination.pageSize})
+  // }
   async update(id: number, updateBudgetDto: UpdateBudgetDto) {
     const budgetUpdate = await this.budgetRepository.update(id,updateBudgetDto)
     if(budgetUpdate.affected){
