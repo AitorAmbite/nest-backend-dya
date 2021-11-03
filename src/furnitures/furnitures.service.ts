@@ -38,7 +38,7 @@ export class FurnituresService {
   async findPaginated (page:number,pageSize:number, type?:string) {
     let furnitureCount = await this.furnitureRepository.findAndCount();
     // const data = await this.furnitureRepository.find({skip:page*pageSize,take:pageSize, where:{type:type}})
-    return furnitureCount
+    return {furniture:furnitureCount,test:"test"}
   }
   async update(id: number, updateFurnitureDto: UpdateFurnitureDto) {
     const furniture = await this.furnitureRepository.update(
