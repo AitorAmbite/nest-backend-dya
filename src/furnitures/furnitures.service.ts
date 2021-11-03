@@ -37,10 +37,9 @@ export class FurnituresService {
 
   async findPaginated (page:number,pageSize:number, type?:string) {
     type = type === "all" ? "" : type;
-    const [allFurniture,furnitureCount] = await this.furnitureRepository.findAndCount();
+    let [allFurniture,furnitureCount] = await this.furnitureRepository.findAndCount();
     const data = await this.furnitureRepository.find({skip:page*pageSize,take:pageSize, where:{type:type}})
-    // return {furnitureCount:furnitureCount,data:data}
-    return [furnitureCount,data]
+    return {furnitureCount:furnitureCount,data:data,page:page,pageSize:pageSize}
   }
   async update(id: number, updateFurnitureDto: UpdateFurnitureDto) {
     const furniture = await this.furnitureRepository.update(
