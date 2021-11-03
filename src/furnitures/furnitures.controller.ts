@@ -39,7 +39,7 @@ export class FurnituresController {
   findPaginated(@Param('page') page:number,@Param('pageSize') pageSize:number, @Param('type') type:string){
     const furniture = this.furnituresService.findPaginated(page,pageSize,type)
     // const response = new PaginatedResponse<Furniture>(furniture.totalRecords,page,furniture.data)
-    return {furniture:furniture.data,count:furniture.count,page:page,pageSize:pageSize}
+    return {furniture:furniture.data,count:furniture.furnitureCount,page:page,pageSize:pageSize}
   }
 
   @Patch(':id')
