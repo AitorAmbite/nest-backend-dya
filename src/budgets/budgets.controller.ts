@@ -14,7 +14,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { BudgetsService } from './budgets.service';
 import { CreateBudgetDto } from './dto/create-budget.dto';
 import { UpdateBudgetDto } from './dto/update-budget.dto';
-import { paginationT } from '../types/paginationTypes';
+import { paginationT } from '../types/PaginationTypes';
 
 @Controller('budgets')
 @UseGuards(JwtAuthGuard)

@@ -24,7 +24,7 @@ export class FurnituresService {
     if (furniture.length > 0) {
       return furniture;
     }
-    throw new HttpException("couldn't find NOTHING", HttpStatus.NOT_FOUND);
+    throw new HttpException("nothingFound", HttpStatus.NOT_FOUND);
   }
 
   async findOne(id: number) {
@@ -36,9 +36,9 @@ export class FurnituresService {
   }
 
   async findPaginated (page:number,pageSize:number, type?:string) {
-    const {f,count} = await this.furnitureRepository.findAndCount();
-    const data = await this.furnitureRepository.find({skip:page*pageSize,take:pageSize, where:{type:this.type}})
-    return {furniture:data,totalRecords:count}
+    let [furniture,furnitureCount] = await this.furnitureRepository.findAndCount();
+    const data = await this.furnitureRepository.find({skip:page*pageSize,take:pageSize, where:{type:type}})
+    return {furniture:furniture,totalRecords:furnitureCount}
   }
   async update(id: number, updateFurnitureDto: UpdateFurnitureDto) {
     const furniture = await this.furnitureRepository.update(

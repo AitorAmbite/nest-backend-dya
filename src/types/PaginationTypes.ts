@@ -13,4 +13,4 @@ class PaginatedResponse<T> {
   data:T;
   constructor(totalRecords:number, page:number, data:T) {}
 }
-export { PaginationDTO, PaginationTypeDTO }
+export { PaginationDTO, PaginationTypeDTO,PaginatedResponse }
