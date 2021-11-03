@@ -36,8 +36,8 @@ export class FurnituresController {
   }
   
   @Get('/paginated/:page/:pageSize/:type')
-  findPaginated(@Param('page') page:number,@Param('pageSize') pageSize:number, @Param('type') type:string){
-    const furniture = this.furnituresService.findPaginated(page,pageSize,type)
+  async findPaginated(@Param('page') page:number,@Param('pageSize') pageSize:number, @Param('type') type:string){
+    const furniture = await this.furnituresService.findPaginated(page,pageSize,type)
     // const response = new PaginatedResponse<Furniture>(furniture.totalRecords,page,furniture.data)
     return {furniture:furniture.data,count:furniture.furnitureCount,page:page,pageSize:pageSize}
   }
