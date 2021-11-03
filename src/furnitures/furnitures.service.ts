@@ -39,7 +39,7 @@ export class FurnituresService {
     type = type === "all" ? "" : type;
     let [allFurniture,furnitureCount] = await this.furnitureRepository.findAndCount();
     const data = await this.furnitureRepository.find({skip:page*pageSize,take:pageSize, where:{type:type}})
-    return {furnitureCount:furnitureCount,data:data}
+    return await {furnitureCount:furnitureCount,data:data}
   }
   async update(id: number, updateFurnitureDto: UpdateFurnitureDto) {
     const furniture = await this.furnitureRepository.update(
