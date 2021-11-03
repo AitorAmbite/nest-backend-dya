@@ -38,7 +38,7 @@ export class FurnituresService {
   async findPaginated (page:number,pageSize:number, type?:string) {
     let findOptions = {skip:page*pageSize,take:pageSize}
     if(type !== "all")
-      findOptions.where = {type:type}
+      findOptions = {...findOptions,...{where:{type:type}}}
     const data = await this.furnitureRepository.find(findOptions)
     return {furnitureCount:data.length,data:data,page:page,pageSize:pageSize}
   }
