@@ -31,13 +31,16 @@ export class BudgetsService {
   findAll() {
     return this.budgetRepository.find({ relations: ['furniture'] });
   }
-  findOne(id: number) {
-    return this.budgetRepository.findOne(id);
+  async findAllNoFurniture(){
+    return this.budgetRepository.find();
   }
-  // async findPaginated(pagination:paginationT) {
-  //   const skip = pagination.page*pagination.pageSize;
-  //   return await this.budgetRepository.find({skip:skip,take:pagination.pageSize})
-  // }
+  async findOne(id: number) {
+    const budget = await this.budgetRepository.findOne(id);
+    if(budget)
+      return budget;
+
+      throw new HttpException("couldn't find budget with id `${id}`", HttpStatus.NOT_FOUND);
+  }
   async update(id: number, updateBudgetDto: UpdateBudgetDto) {
     const budgetUpdate = await this.budgetRepository.update(id,updateBudgetDto)
     if(budgetUpdate.affected){
@@ -50,11 +53,14 @@ export class BudgetsService {
     return this.budgetRepository.delete(id);
   }
 
+  //Helpers
   private getFinalPrice(budgetFurniture:CreateBudgetfurnitureDto[]){
-    // var totalPrice = 0;
-    // Budgetfurniture.forEach(furniture => {
-    //   totalPrice += furniture.price;
-    // });
     return budgetFurniture.reduce((acc,cur) => acc+cur.price,0);
   }
+
+  //unsued - de momento
+  // async findPaginated(pagination:paginationT) {
+  //   const skip = pagination.page*pagination.pageSize;
+  //   return await this.budgetRepository.find({skip:skip,take:pagination.pageSize})
+  // }
 }

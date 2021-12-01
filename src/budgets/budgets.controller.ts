@@ -30,6 +30,10 @@ export class BudgetsController {
   findAll() {
     return this.budgetsService.findAll();
   }
+  @Get("/allNoFurniture")
+  findAllNoFurniture(){
+    return this.budgetsService.findAllNoFurniture()
+  }
   // @Post('/paginated')
   // findPaginated(@Body() pagination:paginationT) {
   //   return this.budgetsService.findPaginated(pagination)
