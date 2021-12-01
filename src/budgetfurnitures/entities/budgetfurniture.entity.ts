@@ -18,6 +18,10 @@ export class Budgetfurniture {
   drawer: number;
   @Column()
   fillingdrawer: number;
+  @Column
+  increment: number;
+  @column
+  special:boolean;
   @Column({ type: 'decimal' })
   price: number;
   @Column()

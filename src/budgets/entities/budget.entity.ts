@@ -20,11 +20,11 @@ export class Budget {
   address: string;
   @Column({ nullable: false, type:"decimal" })
   price: number;
-  @Column()
+  @Column() // portes
   carriage: number;
-  @Column()
+  @Column() // extras
   extras: number;
-  @Column()
+  @Column() // uñero
   unero:number;
   @Column()
   phone: number;
