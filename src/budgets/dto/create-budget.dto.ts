@@ -12,7 +12,6 @@ export class CreateBudgetDto {
   @IsOptional()
   extras: number;
   @IsOptional()
-  @Length(9, 9)
   phone: number;
   @IsOptional()
   furniture: CreateBudgetfurnitureDto[];
