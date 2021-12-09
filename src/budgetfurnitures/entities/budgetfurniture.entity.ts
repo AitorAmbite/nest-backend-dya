@@ -20,7 +20,7 @@ export class Budgetfurniture {
   fillingdrawer: number;
   @Column()
   increment: number;
-  @column()
+  @Column()
   special:boolean;
   @Column({ type: 'decimal' })
   price: number;
