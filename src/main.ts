@@ -3,7 +3,13 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const httpsOptions = {
+    key: fs.readFileSync('/etc/letsencrypt/live/dyadebo.tk-0001/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/dyadebo.tk-0001/fullchain.pem'),
+  };
+  const app = await NestFactory.create(AppModule,{
+    httpsOptions,
+  });
   app.enableCors();
   app.useGlobalPipes(
     new ValidationPipe({
